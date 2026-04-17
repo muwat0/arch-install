@@ -3,7 +3,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PACKAGES_FILE="${SCRIPT_DIR}/packages.txt"
-DOTFILES_REPO="https://git.muwat.org/murat/dotfiles.git"
+DOTFILES_REPO_HTTPS="https://git.muwat.org/murat/dotfiles.git"
+DOTFILES_REPO_SSH="gitea@git.muwat.org:murat/dotfiles.git"
 DOTFILES_DIR="${HOME}/dotfiles"
 FONT_DIR="${HOME}/.local/share/fonts"
 
@@ -90,26 +91,18 @@ clone_dotfiles() {
 	fi
 
 	log "Cloning dotfiles repo..."
-	if git clone --depth 1 "${DOTFILES_REPO}" "${DOTFILES_DIR}"; then
+	if git clone --depth 1 "${DOTFILES_REPO_SSH}" "${DOTFILES_DIR}"; then
 		return
 	fi
 
-	warn "Clone failed. Retrying with HTTP/1.1 and no tags..."
-	if git -c http.version=HTTP/1.1 clone --depth 1 --no-tags "${DOTFILES_REPO}" "${DOTFILES_DIR}"; then
+	warn "SSH clone failed. Retrying with HTTPS..."
+	if git clone --depth 1 "${DOTFILES_REPO_HTTPS}" "${DOTFILES_DIR}"; then
 		return
 	fi
 
-	if [[ "${DOTFILES_REPO}" == https://* ]]; then
-		local repo_host repo_path ssh_repo
-		repo_host="${DOTFILES_REPO#https://}"
-		repo_host="${repo_host%%/*}"
-		repo_path="${DOTFILES_REPO#https://${repo_host}/}"
-		ssh_repo="git@${repo_host}:${repo_path}"
-
-		warn "HTTPS clone failed. Retrying with SSH (${ssh_repo})..."
-		if git clone --depth 1 "${ssh_repo}" "${DOTFILES_DIR}"; then
-			return
-		fi
+	warn "HTTPS clone failed. Retrying with HTTP/1.1 and no tags..."
+	if git -c http.version=HTTP/1.1 clone --depth 1 --no-tags "${DOTFILES_REPO_HTTPS}" "${DOTFILES_DIR}"; then
+		return
 	fi
 
 	error "Failed to clone dotfiles repo. Check credentials, SSH keys, or network stability."
