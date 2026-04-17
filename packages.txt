@@ -1,0 +1,135 @@
+# Arch install package inventory
+# Groups are comments; installer will compose selections.
+
+# === CORE ===
+stow
+git
+base-devel
+wget
+curl
+
+# === CLI ESSENTIALS ===
+fzf
+eza
+zoxide
+tmux
+yt-dlp
+starship
+ripgrep-all
+
+# === CONTAINERS ===
+docker
+docker-compose
+
+# === FONTS ===
+ttf-firacode-nerd
+
+# === WM/DE ===
+plasma
+plasma-login-manager
+hyprland
+waybar
+swaync
+hypridle
+hyprlock
+hyprpaper
+
+# === TERMINALS ===
+ghostty
+ghostty-shell-integration
+ghostty-terminfo
+kitty
+alacritty
+
+# === SHELLS ===
+bash
+zsh
+
+# === EDITORS ===
+neovim
+vim
+emacs
+
+# === SHARED DESKTOP/TOOLS ===
+rofi
+fastfetch
+mpv
+lazygit
+lazydocker
+btop
+yazi
+deskflow
+
+# === CONNECTIVITY ===
+NetworkManager
+bluetooth
+bluez
+bluez-utils
+bluetui
+bluez-qt
+wireless_tools
+iw
+wpa_supplicant
+
+# === POWER/LAPTOP ===
+tlp
+tlp-pd
+tlp-rdw
+acpi
+
+# === VPN ===
+warp-cli
+
+# === VIRTUALIZATION ===
+virt-manager
+qemu-full
+libvirt
+bridge-utils
+dnsmasq
+vde2
+iptables
+
+# === BROWSERS ===
+zen-browser-bin
+helium-browser-bin
+brave-bin
+
+# === MESSAGING/SOCIAL ===
+signal-desktop
+legcord
+
+# === PRODUCTIVITY ===
+localsend
+kdeconnect
+dolphin
+libreoffice-fresh
+obsidian
+
+# === MEDIA/NETWORK ===
+spotify
+qbittorrent
+nicotine+
+wireshark
+
+# === GAMING/DEV ===
+steam
+steam-devices
+lutris
+heroic-games-launcher-bin
+protonup-qt
+prismlauncher
+godot
+
+# === RECORDING ===
+obs-studio
+
+# === NVIDIA (conditional) ===
+nvidia
+nvidia-utils
+nvidia-settings
+nvidia-prime
+nvidia-open
+
+# === OLLAMA (optional) ===
+ollama
+ollama-cuda
