@@ -90,7 +90,7 @@ clone_dotfiles() {
 	fi
 
 	log "Cloning dotfiles repo..."
-	git clone "${DOTFILES_REPO}" "${DOTFILES_DIR}"
+	git clone --depth 1 "${DOTFILES_REPO}" "${DOTFILES_DIR}"
 }
 
 select_menu_single() {
